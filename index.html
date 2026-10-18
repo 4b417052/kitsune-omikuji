@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>狐火神籤 ｜ 夜之神社的每日一籤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Iansui&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#f3e9d2; --red:#c8352a; --gold:#f1c453; --line:#8c2a25;
+  --panel:rgba(18,12,32,.80);
+  --brush:"Iansui","Kaiti TC","DFKai-SB","BiauKai","Noto Serif TC",serif;
+  --cute:"Huninn","Iansui","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{overflow:hidden;background:#050816;color:var(--ink);font-family:var(--cute);font-size:18px}
+button{font-family:inherit;color:inherit}
+.brush{font-family:var(--brush)}
+
+/* ---------- 背景 ---------- */
+#bg{position:fixed;inset:0;z-index:0;overflow:hidden;
+  background:
+   radial-gradient(ellipse at 50% 108%,rgba(120,30,50,.55) 0%,transparent 58%),
+   linear-gradient(#04061a 0%,#0c1130 52%,#1e1740 100%)}
+.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.95}}
+.moon{position:absolute;top:8%;right:13%;width:118px;height:118px;border-radius:50%;
+  background:radial-gradient(circle at 36% 34%,#fffbe8,#f3e3a8 58%,#cfb96f);
+  box-shadow:0 0 70px 24px rgba(255,236,160,.22)}
+.torii-bg{position:absolute;left:50%;bottom:-6px;width:min(560px,60vw);transform:translateX(-50%);opacity:.5;
+  filter:drop-shadow(0 0 22px rgba(255,120,60,.45))}
+.mist{position:absolute;left:-30%;width:160%;height:240px;bottom:-60px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(200,210,255,.16),transparent 70%);filter:blur(18px);animation:mist 28s ease-in-out infinite alternate}
+.mist.m2{bottom:-110px;animation-duration:38s;animation-direction:alternate-reverse;opacity:.8}
+@keyframes mist{from{transform:translateX(-8%)}to{transform:translateX(8%)}}
+.lantern{position:absolute;top:-6px;width:92px;transform-origin:50% 0;animation:sway 5.5s ease-in-out infinite}
+.lantern.l1{left:5%}.lantern.l2{right:5%;animation-delay:-2.6s}
+.lantern svg{width:100%;height:auto;overflow:visible}
+.lantern .glow{animation:flicker 2.3s infinite}
+.lantern.l2 .glow{animation-duration:3.1s}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes flicker{0%,100%{opacity:1}12%{opacity:.78}24%{opacity:.98}41%{opacity:.62}53%{opacity:.95}70%{opacity:.72}84%{opacity:1}}
+.wisp{position:absolute;bottom:-40px;width:16px;height:26px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;
+  background:radial-gradient(ellipse at 50% 70%,#e8f6ff 0%,#78bfff 45%,rgba(100,160,255,0) 72%);
+  filter:blur(1px) drop-shadow(0 0 8px rgba(120,190,255,.9));opacity:0;animation:wisp 12s linear infinite}
+@keyframes wisp{0%{transform:translate(0,0) scale(.7);opacity:0}12%{opacity:.8}50%{transform:translate(26px,-48vh) scale(1)}88%{opacity:.5}100%{transform:translate(-18px,-98vh) scale(.6);opacity:0}}
+.ghost{position:absolute;opacity:0;pointer-events:none;filter:drop-shadow(0 0 10px rgba(255,190,110,.55));animation:ghost 2.5s ease-in-out forwards}
+@keyframes ghost{0%{opacity:0;transform:scale(.8) rotate(-6deg)}35%{opacity:.30}60%{opacity:.16}100%{opacity:0;transform:scale(1.12) rotate(5deg)}}
+.walker{position:absolute;bottom:7%;left:-120px;width:54px;height:150px;opacity:.0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 22%,#000 0 34%,transparent 36%),linear-gradient(#000,#000) 50% 100%/46px 108px no-repeat;
+  border-radius:40% 40% 10% 10%;animation:walk 16s linear forwards}
+.walker::before,.walker::after{content:"";position:absolute;top:26px;width:6px;height:6px;border-radius:50%;background:#ffd45a;box-shadow:0 0 8px #ffb52e}
+.walker::before{left:15px}.walker::after{right:15px}
+@keyframes walk{0%{left:-120px;opacity:0}8%{opacity:.5}92%{opacity:.5}100%{left:105%;opacity:0}}
+
+/* ---------- 固定介面 ---------- */
+.topbtn{position:fixed;top:18px;z-index:50;display:flex;align-items:center;gap:8px;
+  background:rgba(20,12,30,.78);border:2px solid var(--line);color:var(--ink);padding:8px 18px;border-radius:999px;
+  font-size:18px;cursor:pointer;transition:.2s;box-shadow:0 0 14px rgba(200,53,42,.25)}
+.topbtn:hover{background:rgba(70,20,28,.9);box-shadow:0 0 20px rgba(255,150,60,.5)}
+.topbtn svg{width:22px;height:22px}
+#btnTL{left:20px}#btnSound{right:20px}
+#btnSound.hint{animation:hint 1.8s ease-in-out infinite}
+@keyframes hint{0%,100%{box-shadow:0 0 10px rgba(200,53,42,.3)}50%{box-shadow:0 0 26px 6px rgba(255,190,70,.85)}}
+#trackToast{position:fixed;right:22px;top:68px;z-index:50;font-size:16px;color:var(--gold);opacity:0;transition:opacity .6s;pointer-events:none;letter-spacing:.08em;text-shadow:0 0 8px #000}
+#trackToast.show{opacity:1}
+.disclaimer{position:fixed;right:18px;bottom:12px;z-index:60;font-size:17px;letter-spacing:.2em;padding:4px 12px;
+  color:var(--ink);opacity:.82;border:1px solid rgba(243,233,210,.38);border-radius:6px;background:rgba(10,8,20,.62);pointer-events:none}
+
+/* ---------- 畫面 ---------- */
+.screen{position:fixed;inset:0;z-index:10;display:none;overflow:auto;padding:86px 40px 64px}
+.screen.active{display:flex;animation:fadeIn .55s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* 吉祥物 */
+.fox{display:block;animation:bob 3.2s ease-in-out infinite;filter:drop-shadow(0 0 16px rgba(255,170,80,.35))}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.bubble{position:relative;background:#fbf3df;color:#3a2222;border:3px solid #3a2222;border-radius:18px;padding:12px 18px;
+  font-size:19px;line-height:1.5;max-width:300px;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.bubble::after{content:"";position:absolute;left:46px;bottom:-16px;border:10px solid transparent;border-top:14px solid #3a2222}
+.bubble::before{content:"";position:absolute;left:49px;bottom:-9px;border:7px solid transparent;border-top:10px solid #fbf3df;z-index:1}
+
+/* 首頁 */
+#home{align-items:center;justify-content:center;gap:56px}
+#home .foxbox{display:flex;flex-direction:column;align-items:flex-start;gap:26px;margin-top:70px}
+#home .foxbox .fox{width:230px;margin-left:30px}
+#home .mainbox{display:flex;flex-direction:column;align-items:center}
+.title{margin:0;font-size:78px;letter-spacing:.14em;font-weight:400;font-family:var(--brush);
+  background:linear-gradient(#fff4c8,#f1c453 55%,#d9692b);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 14px rgba(255,120,50,.55)) drop-shadow(0 3px 0 #4a0f0c)}
+.sub{margin:4px 0 22px;letter-spacing:.35em;font-size:17px;color:#d9c9a8;opacity:.9}
+.card{width:520px;background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:26px 34px 30px;
+  box-shadow:0 0 0 6px rgba(20,12,30,.55),0 0 0 8px rgba(140,42,37,.55),0 16px 50px rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.field{margin-bottom:18px}
+.field>label,.field>.lab{display:block;font-size:17px;color:var(--gold);margin-bottom:7px;letter-spacing:.2em}
+input[type=text]{width:100%;background:#1b1530;border:2px solid #6e5a8a;color:var(--ink);font-size:20px;font-family:inherit;
+  padding:10px 14px;border-radius:12px;outline:none;transition:.2s}
+input[type=text]:focus{border-color:var(--gold);box-shadow:0 0 14px rgba(241,196,83,.4)}
+input::placeholder{color:#7d7096}
+.birth{display:flex;align-items:center;gap:8px}
+.birth input{text-align:center;padding:10px 6px}
+.birth .y{width:120px}.birth .m,.birth .d{width:78px}
+.birth span{color:#d9c9a8}
+.gender{display:flex;gap:14px;border-radius:14px}
+.gender label{flex:1;margin:0;cursor:pointer;letter-spacing:0}
+.gender input{position:absolute;opacity:0;pointer-events:none}
+.gender span{display:block;text-align:center;font-size:20px;padding:10px;background:#1b1530;border:2px solid #6e5a8a;border-radius:12px;transition:.2s;color:var(--ink)}
+.gender label:hover span{border-color:var(--gold)}
+.gender input:checked+span{background:linear-gradient(#d9382b,#9c1f18);border-color:#ffb08a;box-shadow:0 0 16px rgba(255,90,60,.55)}
+.flash{animation:flashRed .5s ease-in-out 2}
+@keyframes flashRed{0%,100%{box-shadow:0 0 0 0 rgba(255,40,40,0);border-color:#ff2a2a}50%{box-shadow:0 0 0 4px #ff2a2a,0 0 20px 5px rgba(255,40,40,.95);border-color:#ff2a2a}}
+.btn{display:inline-block;border:2px solid #ffb08a;background:linear-gradient(#e0443a,#a1221a);color:#fff4e0;font-size:22px;letter-spacing:.3em;
+  padding:12px 30px;border-radius:999px;cursor:pointer;transition:.2s;box-shadow:0 5px 0 #5d0f0a,0 0 22px rgba(255,90,60,.4)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #5d0f0a,0 0 30px rgba(255,150,70,.7)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #5d0f0a}
+.btn.ghostbtn{background:rgba(30,22,52,.9);border-color:#8e7fb0;box-shadow:0 5px 0 #130c25;letter-spacing:.15em}
+.btn.small{font-size:18px;padding:9px 24px;letter-spacing:.15em}
+#btnStart{width:100%;margin-top:6px}
+
+/* 彈出視窗 */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(3,4,12,.74)}
+.modal.show{display:flex;animation:fadeIn .25s}
+.dialog{width:min(480px,90vw);background:#fbf3df;color:#3a2222;border:4px solid #3a2222;border-radius:20px;padding:22px 28px 24px;text-align:center;
+  box-shadow:0 0 0 6px #b5261c,0 20px 60px rgba(0,0,0,.7)}
+.dialog .mfox{width:86px;height:auto;display:block;margin:-62px auto 4px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
+.mtitle{font-family:var(--brush);font-size:28px;color:#a1221a;margin-bottom:10px;letter-spacing:.1em}
+.mbody{font-size:20px;line-height:1.8;text-align:left;margin-bottom:18px;word-break:break-all}
+.mbody .row{display:flex;gap:10px;justify-content:center}
+.mbody .row b{color:#a1221a;font-weight:400;min-width:4.2em;text-align:right}
+.mbtns{display:flex;gap:14px;justify-content:center}
+.mbtns .btn{font-size:19px;padding:9px 26px;letter-spacing:.15em}
+
+/* 抽籤動畫 */
+#drawing{padding:0;overflow:hidden}
+#drawing .cap{position:absolute;top:9%;left:0;right:0;text-align:center;font-family:var(--brush);font-size:40px;letter-spacing:.3em;
+  color:#ffe9b0;text-shadow:0 0 18px rgba(255,150,60,.8),0 3px 0 #4a0f0c}
+#drawing .cap i{font-style:normal;animation:dots 1.4s steps(4,end) infinite;display:inline-block;width:2.2em;text-align:left;overflow:hidden;vertical-align:bottom}
+@keyframes dots{0%{width:0}100%{width:2.2em}}
+#drawing .stage{position:absolute;inset:0}
+.tube-pos{position:absolute;left:50%;top:54%;width:230px;height:350px;margin:-175px 0 0 -115px;transition:opacity .5s}
+.tube-wrap{width:100%;height:100%;transform-origin:50% 88%;transition:transform .5s ease;filter:drop-shadow(0 0 22px rgba(255,120,50,.45))}
+.tube-wrap svg{width:100%;height:100%;overflow:visible}
+.stage1 .tube-wrap{animation:shake .27s linear infinite}
+@keyframes shake{0%{transform:rotate(-15deg) translateY(0)}25%{transform:rotate(9deg) translateY(-16px)}50%{transform:rotate(-9deg) translateY(0)}75%{transform:rotate(15deg) translateY(-16px)}100%{transform:rotate(-15deg) translateY(0)}}
+.stage2 .tube-wrap{transform:rotate(-32deg) translateY(6px)}
+.stage3 .tube-pos{opacity:0}
+.stick{position:absolute;left:50%;top:54%;width:30px;height:290px;margin:-250px 0 0 -15px;opacity:0;border-radius:8px;
+  background:linear-gradient(90deg,#b9803c,#f0c27a 40%,#d79c52 70%,#a46d2e);border:2px solid #6b4217;
+  display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-family:var(--brush);font-size:20px;color:#8f1a12;letter-spacing:.1em;
+  box-shadow:0 0 14px rgba(0,0,0,.5);transform-origin:50% 50%}
+.stick::before{content:"";position:absolute;top:0;left:0;right:0;height:26px;background:#b5261c;border-radius:6px 6px 0 0}
+.stage2 .stick{animation:stickOut 1.5s ease-in forwards}
+@keyframes stickOut{
+  0%{opacity:0;transform:translate(0,40px) rotate(0)}
+  14%{opacity:1;transform:translate(8px,-34px) rotate(6deg)}
+  52%{transform:translate(70px,0) rotate(36deg)}
+  80%{transform:translate(150px,170px) rotate(80deg)}
+  88%{transform:translate(152px,150px) rotate(76deg)}
+  100%{opacity:1;transform:translate(152px,170px) rotate(80deg)}}
+.stage3 .stick{animation:stickGone .45s forwards}
+@keyframes stickGone{from{opacity:1;transform:translate(152px,170px) rotate(80deg)}to{opacity:0;transform:translate(152px,170px) rotate(80deg)}}
+.paper-wrap{position:absolute;left:50%;top:54%;width:min(860px,86vw);aspect-ratio:1400/940;transform:translate(-50%,-50%);opacity:0}
+.stage3 .paper-wrap{opacity:1}
+.paper-wrap img{display:block;width:100%;height:100%;clip-path:inset(0 50% 0 50%);filter:drop-shadow(0 10px 30px rgba(0,0,0,.7))}
+.stage3 .paper-wrap img{animation:unroll 1.3s ease-out forwards}
+@keyframes unroll{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
+.roll{position:absolute;top:-8px;bottom:-8px;width:20px;left:50%;margin-left:-10px;border-radius:10px;
+  background:linear-gradient(90deg,#c9a56a,#f7ecd0 45%,#b98d4f);border:2px solid #7a5420;box-shadow:0 0 12px rgba(0,0,0,.5);opacity:0}
+.stage3 .roll.r1{opacity:1;animation:rollL 1.3s ease-out forwards}
+.stage3 .roll.r2{opacity:1;animation:rollR 1.3s ease-out forwards}
+@keyframes rollL{from{left:50%}to{left:0}}
+@keyframes rollR{from{left:50%}to{left:100%}}
+#drawing .foxbox{position:absolute;left:5%;bottom:7%;display:flex;flex-direction:column;gap:22px}
+#drawing .foxbox .fox{width:150px;margin-left:26px}
+
+/* 結果 */
+#result,#history{flex-direction:column;align-items:center}
+#result{justify-content:center;gap:14px}
+#result canvas,#hDetail canvas{max-width:min(1240px,92vw);max-height:calc(100vh - 168px);width:auto;height:auto;
+  border-radius:6px;box-shadow:0 12px 50px rgba(0,0,0,.75),0 0 40px rgba(255,150,60,.18)}
+#result .foxbox{position:fixed;left:16px;bottom:56px;display:none;flex-direction:column;gap:20px;z-index:20;pointer-events:none}
+#result .foxbox .fox{width:120px;margin-left:22px}
+#result .foxbox .bubble{font-size:16px;max-width:230px}
+@media (min-width:1560px){#result .foxbox{display:flex}#result.active .foxbox{display:flex}}
+.btnrow{display:flex;gap:16px;justify-content:center}
+
+/* 歷史 */
+#history{justify-content:flex-start;gap:14px}
+#history h2{margin:0;font-family:var(--brush);font-weight:400;font-size:44px;letter-spacing:.3em;color:var(--gold);text-shadow:0 0 14px rgba(255,140,50,.6)}
+#hList{width:min(860px,94vw);display:flex;flex-direction:column;gap:10px}
+.hhead,.hitem{display:grid;grid-template-columns:130px 1.2fr 140px 60px 90px;gap:10px;align-items:center;padding:0 22px}
+.hhead{font-size:15px;color:#bfae8f;letter-spacing:.2em}
+.hitem{height:60px;background:var(--panel);border:2px solid var(--line);border-radius:14px;cursor:pointer;font-size:19px;text-align:left;transition:.2s}
+.hitem:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:0 0 18px rgba(255,170,60,.4)}
+.hitem .hname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hlevel{justify-self:end;text-align:center;border-radius:999px;padding:3px 0;width:78px;font-family:var(--brush);font-size:20px;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.45)}
+.empty{text-align:center;margin-top:40px;font-size:22px;color:#d9c9a8;line-height:2}
+.empty .fox{width:130px;margin:0 auto 16px}
+#hDetail{display:none;flex-direction:column;align-items:center;gap:14px}
+#hDetail canvas{max-height:calc(100vh - 220px)}
+.tipline{font-size:15px;color:#bfae8f;letter-spacing:.1em}
+@media (max-width:1100px){#home{flex-direction:column;gap:10px}#home .foxbox{flex-direction:row;margin-top:20px}#home .foxbox .fox{width:120px}.card{width:min(520px,94vw)}.title{font-size:56px}}
+</style>
+</head>
+<body>
+
+<!-- 共用圖形（狐狸小神使） -->
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"></svg>
+
+<div id="bg" aria-hidden="true">
+  <div class="moon"></div>
+  <svg class="torii-bg" viewBox="0 0 400 300">
+    <path d="M10 44 Q200 8 390 44 L380 68 Q200 38 20 68Z" fill="#6e1014"/>
+    <path d="M52 96 H348 V114 H52Z" fill="#6e1014"/>
+    <path d="M84 62 H108 V300 H84Z M292 62 H316 V300 H292Z" fill="#6e1014"/>
+    <path d="M178 66 H222 V98 H178Z" fill="#3a0a0c"/>
+  </svg>
+  <div class="mist"></div><div class="mist m2"></div>
+  <div class="lantern l1"><svg viewBox="0 0 92 190">
+    <line x1="46" y1="0" x2="46" y2="36" stroke="#2a1a1a" stroke-width="3"/>
+    <g class="glow"><ellipse cx="46" cy="102" rx="70" ry="78" fill="url(#lg)" opacity=".55"/></g>
+    <rect x="30" y="34" width="32" height="10" rx="3" fill="#2a1a1a"/>
+    <ellipse cx="46" cy="94" rx="36" ry="48" fill="#d9382b" stroke="#5d0f0a" stroke-width="3"/>
+    <path d="M46 46 V142 M28 52 Q20 94 28 138 M64 52 Q72 94 64 138 M36 48 Q31 94 36 142 M56 48 Q61 94 56 142" stroke="#7a1810" stroke-width="2" fill="none" opacity=".7"/>
+    <rect x="30" y="140" width="32" height="10" rx="3" fill="#2a1a1a"/>
+    <text x="46" y="106" font-size="30" text-anchor="middle" fill="#ffe9b0" style="font-family:var(--brush)">火</text>
+    <path d="M46 150 V176 M40 176 H52 M42 176 L40 190 M46 176 V190 M50 176 L52 190" stroke="#e8b23a" stroke-width="2" fill="none"/>
+  </svg></div>
+  <div class="lantern l2"><svg viewBox="0 0 92 190">
+    <line x1="46" y1="0" x2="46" y2="36" stroke="#2a1a1a" stroke-width="3"/>
+    <g class="glow"><ellipse cx="46" cy="102" rx="70" ry="78" fill="url(#lg)" opacity=".55"/></g>
+    <rect x="30" y="34" width="32" height="10" rx="3" fill="#2a1a1a"/>
+    <ellipse cx="46" cy="94" rx="36" ry="48" fill="#d9382b" stroke="#5d0f0a" stroke-width="3"/>
+    <path d="M46 46 V142 M28 52 Q20 94 28 138 M64 52 Q72 94 64 138 M36 48 Q31 94 36 142 M56 48 Q61 94 56 142" stroke="#7a1810" stroke-width="2" fill="none" opacity=".7"/>
+    <rect x="30" y="140" width="32" height="10" rx="3" fill="#2a1a1a"/>
+    <text x="46" y="106" font-size="30" text-anchor="middle" fill="#ffe9b0" style="font-family:var(--brush)">籤</text>
+    <path d="M46 150 V176 M40 176 H52 M42 176 L40 190 M46 176 V190 M50 176 L52 190" stroke="#e8b23a" stroke-width="2" fill="none"/>
+  </svg></div>
+  <svg width="0" height="0" style="position:absolute"><defs><radialGradient id="lg"><stop offset="0" stop-color="#ffb347" stop-opacity=".95"/><stop offset="1" stop-color="#ff7a2a" stop-opacity="0"/></radialGradient></defs></svg>
+</div>
+
+<button id="btnTL" class="topbtn" type="button"></button>
+<button id="btnSound" class="topbtn hint" type="button" aria-label="音樂開關"></button>
+<div id="trackToast"></div>
+<div class="disclaimer">僅供娛樂</div>
+
+<!-- 首頁 -->
+<section id="home" class="screen active">
+  <div class="foxbox">
+    <div class="bubble" id="homeBubble">請報上名來……</div>
+    <svg class="fox" viewBox="0 0 140 145"><use href="#fox"/></svg>
+  </div>
+  <div class="mainbox">
+    <h1 class="title">狐火神籤</h1>
+    <p class="sub">夜之神社的每日一籤</p>
+    <div class="card">
+      <div class="field">
+        <label for="inName">姓　名</label>
+        <input type="text" id="inName" maxlength="12" placeholder="請輸入你的名字" autocomplete="off">
+      </div>
+      <div class="field">
+        <div class="lab">生　日（西元）</div>
+        <div class="birth">
+          <input type="text" id="inY" class="y" inputmode="numeric" maxlength="4" placeholder="1999" autocomplete="off"><span>年</span>
+          <input type="text" id="inM" class="m" inputmode="numeric" maxlength="2" placeholder="12" autocomplete="off"><span>月</span>
+          <input type="text" id="inD" class="d" inputmode="numeric" maxlength="2" placeholder="25" autocomplete="off"><span>日</span>
+        </div>
+      </div>
+      <div class="field">
+        <div class="lab">性　別</div>
+        <div class="gender" id="inGender">
+          <label><input type="radio" name="gender" value="男"><span>男</span></label>
+          <label><input type="radio" name="gender" value="女"><span>女</span></label>
+        </div>
+      </div>
+      <button type="button" class="btn" id="btnStart">開始抽籤</button>
+    </div>
+  </div>
+</section>
+
+<!-- 抽籤動畫 -->
+<section id="drawing" class="screen">
+  <div class="cap">神明感應中<i>……</i></div>
+  <div class="stage" id="stage">
+    <div class="tube-pos"><div class="tube-wrap" id="tubeWrap">
+      <svg viewBox="0 -40 220 360">
+        <defs><linearGradient id="tubeG" x1="0" x2="1"><stop offset="0" stop-color="#6e1812"/><stop offset=".45" stop-color="#e0443a"/><stop offset="1" stop-color="#5d140e"/></linearGradient></defs>
+        <path d="M46 70 L46 288 Q46 312 110 312 Q174 312 174 288 L174 70 Z" fill="url(#tubeG)" stroke="#3b0c09" stroke-width="4"/>
+        <ellipse cx="110" cy="70" rx="64" ry="15" fill="#240604" stroke="#3b0c09" stroke-width="3"/>
+        <g id="sticksG">
+          <rect x="74" y="-24" width="11" height="112" rx="3" fill="#e2b46c" stroke="#8a5a20" stroke-width="1.5" transform="rotate(-14 80 78)"/>
+          <rect x="88" y="-34" width="11" height="116" rx="3" fill="#ecc27c" stroke="#8a5a20" stroke-width="1.5" transform="rotate(-6 94 78)"/>
+          <rect x="104" y="-38" width="11" height="118" rx="3" fill="#e2b46c" stroke="#8a5a20" stroke-width="1.5"/>
+          <rect x="119" y="-32" width="11" height="114" rx="3" fill="#ecc27c" stroke="#8a5a20" stroke-width="1.5" transform="rotate(7 125 78)"/>
+          <rect x="132" y="-22" width="11" height="108" rx="3" fill="#e2b46c" stroke="#8a5a20" stroke-width="1.5" transform="rotate(15 138 78)"/>
+        </g>
+        <path d="M46 84 Q110 104 174 84 V100 Q110 120 46 100Z" fill="#6e1812" opacity=".0"/>
+        <rect x="46" y="112" width="128" height="11" fill="#f1c453" stroke="#7a5a10" stroke-width="1.5"/>
+        <rect x="46" y="268" width="128" height="11" fill="#f1c453" stroke="#7a5a10" stroke-width="1.5"/>
+        <g font-size="34" text-anchor="middle" fill="#fbe9bd" style="font-family:var(--brush)">
+          <text x="110" y="166">御</text><text x="110" y="205">神</text><text x="110" y="244">籤</text>
+        </g>
+      </svg>
+    </div></div>
+    <div class="stick" id="stick"></div>
+    <div class="paper-wrap" id="paperWrap"><img id="paperImg" alt="籤紙"><div class="roll r1"></div><div class="roll r2"></div></div>
+  </div>
+  <div class="foxbox">
+    <div class="bubble" id="drawBubble">……</div>
+    <svg class="fox" viewBox="0 0 140 145"><use href="#fox"/></svg>
+  </div>
+</section>
+
+<!-- 結果 -->
+<section id="result" class="screen">
+  <canvas id="resultCanvas" width="1400" height="940"></canvas>
+  <div class="btnrow">
+    <button type="button" class="btn small" id="btnDownload">下載籤紙圖片</button>
+  </div>
+  <div class="foxbox">
+    <div class="bubble" id="resultBubble"></div>
+    <svg class="fox" viewBox="0 0 140 145"><use href="#fox"/></svg>
+  </div>
+</section>
+
+<!-- 歷史紀錄 -->
+<section id="history" class="screen">
+  <h2>歷史籤紀</h2>
+  <div id="hList"></div>
+  <div id="hDetail">
+    <canvas id="histCanvas" width="1400" height="940"></canvas>
+    <div class="btnrow">
+      <button type="button" class="btn small ghostbtn" id="btnBackList">返回列表</button>
+      <button type="button" class="btn small" id="btnHistDownload">下載籤紙圖片</button>
+    </div>
+  </div>
+</section>
+
+<!-- 彈出視窗 -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="dialog">
+    <svg class="mfox" viewBox="0 0 140 145"><use href="#fox"/></svg>
+    <div class="mtitle" id="mTitle"></div>
+    <div class="mbody" id="mBody"></div>
+    <div class="mbtns" id="mBtns"></div>
+  </div>
+</div>
+
+<noscript><p style="position:fixed;z-index:999;top:40%;width:100%;text-align:center;font-size:24px">請開啟 JavaScript 才能抽籤喔。</p></noscript>
+
+<script>
+"use strict";
+/* =====================================================================
+   共用：亂數（固定種子）、日期、小工具
+   ===================================================================== */
+function xmur3(str){let h=1779033703^str.length;for(let i=0;i<str.length;i++){h=Math.imul(h^str.charCodeAt(i),3432918353);h=h<<13|h>>>19;}
+  return function(){h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);return(h^=h>>>16)>>>0;};}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function makeRng(str){return mulberry32(xmur3(str)());}
+const pick=(arr,r)=>arr[Math.floor(r()*arr.length)];
+const $=id=>document.getElementById(id);
+const pad2=n=>String(n).padStart(2,'0');
+function todayStr(){const d=new Date();return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function kanji(n){const d='零一二三四五六七八九';if(n>=100)return'百';if(n<10)return d[n];const t=Math.floor(n/10),o=n%10;return(t===1?'':d[t])+'十'+(o?d[o]:'');}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+/* =====================================================================
+   狐狸小神使與御守圖形（SVG 路徑，網頁與籤紙圖片共用）
+   ===================================================================== */
+const FOX_HEAD=[
+  {d:'M22 40 L27 6 L52 27 Z',fill:'#fbf6ea',stroke:'#2a1a1a',sw:2.5},
+  {d:'M98 40 L93 6 L68 27 Z',fill:'#fbf6ea',stroke:'#2a1a1a',sw:2.5},
+  {d:'M30 35 L31 17 L44 28 Z',fill:'#d9453a'},
+  {d:'M90 35 L89 17 L76 28 Z',fill:'#d9453a'},
+  {d:'M20 42 Q60 12 100 42 Q98 70 60 88 Q22 70 20 42 Z',fill:'#fbf6ea',stroke:'#2a1a1a',sw:2.5},
+  {d:'M60 26 Q53 37 60 46 Q67 37 60 26 Z',fill:'#d9453a'},
+  {d:'M33 55 Q44 45 55 52 Q44 56 33 55 Z',fill:'#2a1a1a'},
+  {d:'M87 55 Q76 45 65 52 Q76 56 87 55 Z',fill:'#2a1a1a'},
+  {d:'M24 67 a6 4 0 1 0 12 0 a6 4 0 1 0 -12 0 Z',fill:'rgba(255,110,125,.55)'},
+  {d:'M84 67 a6 4 0 1 0 12 0 a6 4 0 1 0 -12 0 Z',fill:'rgba(255,110,125,.55)'},
+  {d:'M55 70 Q60 75 65 70 Q60 68 55 70 Z',fill:'#2a1a1a'},
+  {d:'M54 77 Q57 80 60 77 Q63 80 66 77',fill:'none',stroke:'#2a1a1a',sw:2}
+];
+function pathsToSvg(list){return list.map(p=>`<path d="${p.d}" fill="${p.fill||'none'}"${p.stroke?` stroke="${p.stroke}" stroke-width="${p.sw||2}"`:''} stroke-linejoin="round" stroke-linecap="round"/>`).join('');}
+function buildDefs(){
+  const head=pathsToSvg(FOX_HEAD);
+  const glow='<ellipse cx="44" cy="52" rx="6" ry="1.8" fill="#ffd45a" opacity="0"><animate attributeName="opacity" values="0;0;.95;0;0" dur="6s" repeatCount="indefinite"/></ellipse>'+
+             '<ellipse cx="76" cy="52" rx="6" ry="1.8" fill="#ffd45a" opacity="0"><animate attributeName="opacity" values="0;0;.95;0;0" dur="6s" repeatCount="indefinite"/></ellipse>';
+  const body=
+    '<path d="M92 130 Q136 120 128 78 Q120 106 90 110 Z" fill="#f1a24b" stroke="#2a1a1a" stroke-width="2" stroke-linejoin="round"/>'+
+    '<path d="M128 78 Q123 93 114 102 Q125 97 128 78 Z" fill="#fff"/>'+
+    '<path d="M34 145 L40 88 Q60 80 80 88 L86 145 Z" fill="#f7f0e0" stroke="#2a1a1a" stroke-width="2.2" stroke-linejoin="round"/>'+
+    '<path d="M52 86 L60 106 L68 86" fill="none" stroke="#d9453a" stroke-width="5" stroke-linejoin="round"/>'+
+    '<path d="M37 114 H83 V125 H37 Z" fill="#d9453a" stroke="#2a1a1a" stroke-width="1.8"/>'+
+    '<path d="M38 96 Q20 106 25 124 Q36 118 41 106 Z" fill="#f7f0e0" stroke="#2a1a1a" stroke-width="2" stroke-linejoin="round"/>'+
+    '<path d="M82 96 Q102 88 106 70 Q92 78 80 90 Z" fill="#f7f0e0" stroke="#2a1a1a" stroke-width="2" stroke-linejoin="round"/>';
+  $('defs').innerHTML='<defs>'+
+    `<symbol id="foxhead" viewBox="0 0 120 92">${head}</symbol>`+
+    `<symbol id="fox" viewBox="0 0 140 145">${body}<g transform="translate(10,0)">${head}${glow}</g></symbol>`+
+    '</defs>';
+}
+function drawFoxHead(c,x,y,s){
+  c.save();c.translate(x,y);c.scale(s,s);c.lineJoin='round';c.lineCap='round';
+  FOX_HEAD.forEach(p=>{const path=new Path2D(p.d);
+    if(p.fill&&p.fill!=='none'){c.fillStyle=p.fill;c.fill(path);}
+    if(p.stroke){c.strokeStyle=p.stroke;c.lineWidth=p.sw||2;c.stroke(path);}});
+  c.restore();
+}
+const OMA={body:'M4 9 H20 Q22 9 22 11 V29 Q22 31 20 31 H4 Q2 31 2 29 V11 Q2 9 4 9 Z',cord:'M8 9 Q12 -3 16 9',flap:'M2 16 H22',knot:'M12 23 m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0'};
+function drawOmamori(c,x,y,s,on){
+  c.save();c.translate(x,y);c.scale(s,s);c.lineWidth=1.6;c.lineJoin='round';c.lineCap='round';
+  const body=new Path2D(OMA.body);
+  c.fillStyle=on?'#c8352a':'rgba(110,90,80,0.20)';c.fill(body);
+  c.strokeStyle=on?'#6e140f':'rgba(90,70,60,0.5)';c.stroke(body);
+  c.strokeStyle=on?'#f1c453':'rgba(90,70,60,.38)';c.stroke(new Path2D(OMA.flap));
+  c.strokeStyle=on?'#e0a93a':'rgba(90,70,60,.45)';c.lineWidth=1.8;c.stroke(new Path2D(OMA.cord));
+  c.fillStyle=on?'#f1c453':'rgba(90,70,60,.35)';c.fill(new Path2D(OMA.knot));
+  c.restore();
+}
+const ICON_TORII='<svg viewBox="0 0 32 32"><path d="M2 7 Q16 3 30 7 L29 10 Q16 7 3 10Z M5 13 H27 V15.5 H5Z M8 10 H10.5 V30 H8Z M21.5 10 H24 V30 H21.5Z M14 10 H18 V13 H14Z" fill="currentColor"/></svg>';
+const ICON_SCROLL='<svg viewBox="0 0 32 32"><path d="M9 4 H25 V26 Q25 28 23 28 H7 Q9 28 9 26 Z M6 28 Q4 28 4 26 V24 H9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M13 10 H21 M13 15 H21 M13 20 H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+/* =====================================================================
+   籤文資料
+   ===================================================================== */
+const LEVELS=[
+  {key:'daikichi',name:'大吉',color:'#d9382b'},
+  {key:'chukichi',name:'中吉',color:'#e0662e'},
+  {key:'shokichi',name:'小吉',color:'#d99a2b'},
+  {key:'kichi',name:'吉',color:'#4f9a5b'},
+  {key:'suekichi',name:'末吉',color:'#4a86b5'},
+  {key:'kyo',name:'凶',color:'#7a52a0'}
+];
+const STAR_RANGE={daikichi:[4,5],chukichi:[3,5],shokichi:[3,4],kichi:[2,4],suekichi:[2,3],kyo:[1,2]};
+const SUBS=[{k:'love',n:'戀愛'},{k:'study',n:'學業'},{k:'money',n:'金運'},{k:'health',n:'健康'}];
+
+const POEMS={
+daikichi:[
+ {l:['雲開月出照前庭','萬事如意步步青','莫道順風無險處','謙懷守禮福長寧'],p:'烏雲散去，前路明亮，事情進行得很順利；不過越順利越要謙虛守禮，福氣才留得久。'},
+ {l:['春風入戶百花開','貴人相引喜自來','所求之事皆可遂','切莫驕矜惹禍災'],p:'好運像春風進門，會有貴人出手幫忙，想做的事大多能成；只要不驕傲自滿，就不會惹來麻煩。'},
+ {l:['金鱗得水化龍行','雲路迢迢任遠征','志在高山終有就','持心如鏡自分明'],p:'像魚兒遇到水，有機會大展身手；目標再遠也能一步步達成，只要保持清明的心。'},
+ {l:['朱門燈火夜來明','好事臨門報喜聲','舊困漸消新運起','知恩惜福路長平'],p:'家門前燈火通明，好消息就要上門；過去的困擾慢慢消散，新的運勢開始，記得感恩惜福。'}],
+chukichi:[
+ {l:['輕舟順水過前灣','緩緩行來事不艱','多聽人言少自負','心平氣穩得清閒'],p:'像小船順著水流，雖然不快但很穩，事情不難辦；多聽別人意見、別太自信，心情平穩就能輕鬆度日。'},
+ {l:['山前花信已先知','好運徐來不用疑','一分努力一分得','莫待春深始惜時'],p:'好消息已有徵兆，好運會慢慢到來；付出多少努力就收穫多少，別等太晚才懂得珍惜時間。'},
+ {l:['月影斜窗夜色溫','獨行亦有故人尋','財來有道宜量力','穩步前行勝躁奔'],p:'夜晚安靜溫柔，就算一個人也會有老朋友來找你；錢財要走正當的路、量力而為，穩穩走比急著衝更好。'},
+ {l:['竹風拂過小橋東','一事將成在眼中','再加三分耐心力','好景終歸屬有功'],p:'有件事快要成功了，只差臨門一腳；再多一點耐心，好結果會屬於努力的人。'}],
+shokichi:[
+ {l:['微風細雨潤花枝','小喜小福正當時','莫嫌步緩無大利','積少成多自有期'],p:'今天有些小小的好事，雖然不是大利益，但一點一滴累積，終會有成果。'},
+ {l:['燈前一點暖光明','不必高呼自有成','守住本心行細事','小心無過是安平'],p:'一點小小的光就足夠溫暖；不用大聲張揚，事情自然會成；專心做好小事、謹慎不出錯，就是平安。'},
+ {l:['遠山初霽見晴天','舊事重提亦有緣','順勢而為無大礙','莫貪多得失眼前'],p:'天氣漸漸放晴，過去的事可能因緣再度出現；順著情況走不會有大問題，別貪心多要，以免失去眼前擁有的。'},
+ {l:['石階微涼落葉輕','心中小事漸分明','友言一句如藥石','靜聽方知路自平'],p:'心裡的小煩惱慢慢變清楚，朋友的一句話可能很有幫助，靜下心來聽，就看得出該往哪走。'}],
+kichi:[
+ {l:['晨鐘一響過山林','舊夢新程兩可尋','事有轉機宜把握','莫因遲疑誤良音'],p:'清晨鐘聲帶來新氣象，舊夢想和新計畫都有機會；事情出現轉機要好好把握，別因猶豫錯過好消息。'},
+ {l:['清溪繞屋鳥聲圓','平穩光陰勝似仙','日用尋常皆有味','珍惜眼前是福田'],p:'平穩的日子比什麼都好，平凡的生活也有滋味；珍惜眼前所擁有的，就是最大的福氣。'},
+ {l:['紅葉飄來入小窗','秋光一片靜如江','舊友音書將寄至','心懷坦蕩福相降'],p:'秋天的景色安靜美好，老朋友可能捎來消息；心胸坦蕩，福氣自然會降臨。'},
+ {l:['春雪初融水自流','舊愁漸解不須憂','行事但憑誠與信','自有佳音在後頭'],p:'煩惱漸漸化解，不用擔心；做事只要誠實守信，好消息會在後面等著你。'}],
+suekichi:[
+ {l:['晚霞映水色微紅','好事猶遲待好風','莫急莫慌循舊路','漸行漸穩必成功'],p:'好事還在路上，需要等待時機；別急別慌，照著熟悉的方法做，慢慢就會變穩、變成功。'},
+ {l:['燈火闌珊夜漸深','先難後易莫沉吟','今日小阻非終局','待到天明見好春'],p:'一開始有點難、後面會變容易，今天的小阻礙不是結局，耐心等到天亮就會看到好轉。'},
+ {l:['遠樹含煙月半明','前程未定莫憂驚','默默耕耘終有穫','不須急問幾時成'],p:'前路還看不清也不要驚慌，默默努力終究會有收穫，不用急著追問什麼時候成功。'},
+ {l:['秋江落日水悠悠','小有波瀾不用愁','人情冷暖皆為鏡','守分隨緣自得休'],p:'小小的起伏不用煩惱，人情冷暖是讓你看清身邊的人；守本分、隨緣分，自然能得到安適。'}],
+kyo:[
+ {l:['雲遮明月夜行難','處處留心莫輕慢','守靜待時不妄動','雲開自見月團圓'],p:'今天像烏雲遮住月亮，走夜路要特別小心；安靜等待、不要亂動，雲散了月亮自然會出現。'},
+ {l:['寒風透戶燭搖搖','小事紛紛莫自焦','謹言慎行無大禍','退讓一步福來朝'],p:'今天小事一堆，容易心煩，但說話做事謹慎就不會出大問題，退一步反而會有好結果。'},
+ {l:['枯枝落葉冷霜天','欲進還須且後延','多言多失宜沉默','積善守分待春前'],p:'想往前衝之前要先緩一緩，話多容易出錯，不如保持沉默；多做好事、守本分，靜待好時機。'},
+ {l:['夜深霧重燈火微','行路須防暗處危','莫與人爭閒是非','靜待天明萬事歸'],p:'夜深霧大，走路要多防備，別和人爭是非；靜靜等到天亮，事情自然會歸於平靜。'}]
+};
+const ADVICE={
+daikichi:['今天適合大膽開始新事情，把握機會，但別忘了向幫助你的人說聲謝謝。','運氣很旺，想做的事今天就動手吧，記得保持低調。','心情放輕鬆，好事自己會找上門，別因為順利就鬆懈。'],
+chukichi:['照著計畫一步一步走，今天穩紮穩打就會有好結果。','遇到意見不同時先聽完再說，能少走不少冤枉路。','今天適合處理拖延已久的事，做完會很有成就感。'],
+shokichi:['不用追求大成就，把眼前的小事做好，就是今天最大的收穫。','對身邊的人多一句關心，小小的善意會帶來回報。','行程不要排太滿，留一點彈性給意外的驚喜。'],
+kichi:['平穩就是福，照自己的步調過日子就好。','今天適合整理房間或計畫，讓心裡也跟著清爽。','有事就找信任的人聊聊，可能會有新的想法。'],
+suekichi:['運氣正在慢慢回升，今天先把基本功做好，不必急著求結果。','做重要決定前多想一天，結果通常更好。','心情有點悶的話，出門走走、喝杯熱茶，會好很多。'],
+kyo:['今天宜低調行事，重要的決定盡量延後，多檢查、多確認就能平安度過。','遇到不順不用氣餒，早點休息，明天又是新的一天。','少說多聽、慢慢來，別和人爭執，過了今天運勢就會回升。']
+};
+const ITEMS={
+daikichi:{wish:['心願必成，靜待佳音','所求皆遂，貴人相助'],wait:['所待之人，不久將至','良音在途，近日可見'],lost:['失物可尋，就在近處','失物自歸，不必焦急'],trip:['出行平安，一路順風','遠行大利，宜早出發']},
+chukichi:{wish:['多加努力，終能實現','心願可成，需待時機'],wait:['來人漸近，稍安勿躁','消息將至，耐心等候'],lost:['細心尋找，可以找回','失物在舊處，回頭可得'],trip:['出行順利，備妥行囊','旅途平順，宜結伴行']},
+shokichi:{wish:['小願可成，大願再等','一步一步，願望漸近'],wait:['來人稍遲，終會到來','有信自遠方，慢慢來'],lost:['費些功夫，尚可找回','失物在低處，仔細尋覓'],trip:['近行無礙，遠行宜慎','小旅怡情，早去早回']},
+kichi:{wish:['順勢而行，願望可成','誠心所求，自有回應'],wait:['所待之人，將有消息','來人可期，不必擔心'],lost:['尋之可得，勿太心急','失物可尋，問問身邊人'],trip:['出行平安，心情舒暢','旅途順心，留意時間']},
+suekichi:{wish:['時機未到，仍須等待','願望尚遲，持之以恆'],wait:['來人遲遲，勿急勿躁','消息稍晚，終會到達'],lost:['失物難尋，但非全無','慢慢尋找，終有下落'],trip:['出行宜慢，事先確認','旅途小波折，無大礙']},
+kyo:{wish:['願望難遂，宜守不宜進','暫放心願，另待良機'],wait:['來人未至，勿再苦等','消息遲遲，先顧自身'],lost:['失物難尋，宜放寬心','不易尋回，下次收好'],trip:['遠行宜慎，改期為佳','出行多變，備妥再行']}
+};
+const ITEM_LABELS=[{k:'wish',n:'願望'},{k:'wait',n:'待人'},{k:'lost',n:'失物'},{k:'trip',n:'旅行'}];
+const COLORS=[
+ {n:'朱紅',h:'#c8352a'},{n:'山吹黃',h:'#f2b33d'},{n:'櫻粉',h:'#f4a6b8'},{n:'藤紫',h:'#9275b8'},
+ {n:'若竹綠',h:'#6fae6a'},{n:'天藍',h:'#5aa7d6'},{n:'藏青',h:'#2c3e73'},{n:'象牙白',h:'#f3ead7'},
+ {n:'墨黑',h:'#2a2a30'},{n:'橙橘',h:'#ee8a3a'},{n:'抹茶綠',h:'#9bb35a'},{n:'金色',h:'#d4a73a'}
+];
+const CHARMS=[
+ {c:'動物',e:'🦊',n:'狐狸',d:'稻荷神的使者，替你傳遞好運',g:'*'},
+ {c:'動物',e:'🐱',n:'招財貓',d:'舉起小手，替你招來福氣',g:'女'},
+ {c:'動物',e:'🐶',n:'柴犬',d:'忠心的夥伴，今天替你守住運氣',g:'男'},
+ {c:'動物',e:'🐢',n:'烏龜',d:'慢慢走也沒關係，穩穩的福氣最長久',g:'*'},
+ {c:'動物',e:'🐦',n:'麻雀',d:'清晨的鳴叫，帶來今天的好消息',g:'*'},
+ {c:'動物',e:'🐉',n:'神龍',d:'乘著雲氣而來，替你添一份勇氣',g:'男'},
+ {c:'動物',e:'🐇',n:'月兔',d:'搗著年糕，替你把煩惱捏圓',g:'女'},
+ {c:'食物',e:'🍡',n:'三色糰子',d:'甜甜圓圓，人緣今天特別好',g:'女'},
+ {c:'食物',e:'🍙',n:'飯糰',d:'吃飽才有力氣迎接今天',g:'*'},
+ {c:'食物',e:'🍵',n:'抹茶',d:'一口清香，讓心安靜下來',g:'*'},
+ {c:'食物',e:'🍘',n:'仙貝',d:'喀滋一聲，煩惱全部咬碎',g:'男'},
+ {c:'食物',e:'🍜',n:'拉麵',d:'熱湯暖胃，也暖了今天的運勢',g:'男'},
+ {c:'食物',e:'🍓',n:'草莓',d:'酸酸甜甜，戀愛運悄悄加分',g:'女'},
+ {c:'食物',e:'🍠',n:'烤地瓜',d:'樸實的香甜，是秋夜裡的小幸福',g:'*'},
+ {c:'物品',e:'🎐',n:'風鈴',d:'叮鈴一聲，把壞運氣吹走',g:'女'},
+ {c:'物品',e:'🔔',n:'鈴鐺',d:'搖一搖，神明就會聽見你',g:'*'},
+ {c:'物品',e:'🎴',n:'花牌',d:'翻到好牌，今天手氣不錯',g:'男'},
+ {c:'物品',e:'🏮',n:'燈籠',d:'替你照亮前面的路',g:'*'},
+ {c:'物品',e:'⛩️',n:'鳥居',d:'穿過它，運氣就換新',g:'*'},
+ {c:'物品',e:'📿',n:'念珠',d:'靜下心來，守住自己的本分',g:'男'},
+ {c:'物品',e:'🎏',n:'鯉魚旗',d:'迎風向上，一路逆流而進',g:'男'},
+ {c:'物品',e:'🎀',n:'緞帶',d:'綁住好運，不讓它溜走',g:'女'},
+ {c:'植物',e:'🌸',n:'櫻花',d:'短暫卻耀眼，記得把握今天',g:'女'},
+ {c:'植物',e:'🎍',n:'門松',d:'新的開始，福氣進門',g:'*'},
+ {c:'植物',e:'🎋',n:'七夕竹',d:'把願望掛上去吧',g:'*'},
+ {c:'植物',e:'🍀',n:'四葉草',d:'藏著小小的幸運',g:'*'},
+ {c:'植物',e:'🌲',n:'杉樹',d:'挺拔穩重，是神社的守護者',g:'男'},
+ {c:'植物',e:'🍁',n:'楓葉',d:'秋天的顏色，帶來好心情',g:'*'},
+ {c:'植物',e:'🌾',n:'稻穗',d:'稻荷的恩賜，踏實就會有收穫',g:'男'},
+ {c:'植物',e:'🌼',n:'小菊花',d:'樸素的花，帶來安穩的一天',g:'女'}
+];
+const CATS=['動物','食物','物品','植物'];
+const FOX_SAY={
+ daikichi:'哇……是大吉！神明今天心情很好呢。',
+ chukichi:'中吉耶，穩穩的好運，很棒喔。',
+ shokichi:'小小的幸運，也是幸運喔。',
+ kichi:'吉，平安就是福。',
+ suekichi:'末吉……好運正在後面等你。',
+ kyo:'凶……別怕。真正的神社會讓人把籤綁起來，把壞運留在那裡喔。'
+};
+
+/* =====================================================================
+   抽籤運算（姓名＋生日＋性別＋日期 → 固定結果）
+   ===================================================================== */
+function makeKey(inp,date){return `${inp.name}|${inp.y}-${inp.m}-${inp.d}|${inp.gender}|${date}`;}
+function generateFortune(inp,date){
+  const key=makeKey(inp,date);
+  const r=makeRng(key);
+  const level=LEVELS[Math.floor(r()*LEVELS.length)];
+  const num=1+Math.floor(r()*100);
+  const poem=pick(POEMS[level.key],r);
+  const [lo,hi]=STAR_RANGE[level.key];
+  const stars={};
+  SUBS.forEach(s=>{stars[s.k]=lo+Math.floor(r()*(hi-lo+1));});
+  const vals=SUBS.map(s=>stars[s.k]);
+  if(hi>lo&&vals.every(v=>v===vals[0])){ // 避免四項完全一樣
+    const s=SUBS[Math.floor(r()*4)].k; stars[s]=stars[s]>=hi?stars[s]-1:stars[s]+1;
+  }
+  const it=ITEMS[level.key],items={};
+  ITEM_LABELS.forEach(x=>{items[x.k]=pick(it[x.k],r);});
+  const color=pick(COLORS,r);
+  const luckyNum=1+Math.floor(r()*99);
+  const cat=CATS[Math.floor(r()*CATS.length)];
+  const pool=CHARMS.filter(c=>c.c===cat&&(c.g==='*'||c.g===inp.gender));
+  const charm=pick(pool,r);
+  const advice=pick(ADVICE[level.key],r);
+  const title=inp.name+(inp.gender==='男'?'君':'小姐');
+  // 白話解釋（與整體運勢、分項分數一致）
+  const arr=SUBS.map(s=>({n:s.n,v:stars[s.k]}));
+  const best=arr.reduce((a,b)=>b.v>a.v?b:a), worst=arr.reduce((a,b)=>b.v<a.v?b:a);
+  let stat='';
+  if(best.v!==worst.v){
+    stat=(level.key==='suekichi'||level.key==='kyo')
+      ?`四項之中「${best.n}」相對較好，「${worst.n}」要特別小心。`
+      :`四項之中以「${best.n}」最旺，「${worst.n}」宜稍加留意。`;
+  }
+  return {key,name:inp.name,gender:inp.gender,y:inp.y,m:inp.m,d:inp.d,date,title,
+    level:{key:level.key,name:level.name,color:level.color},num,poem:poem.l,
+    explain:poem.p+stat+advice,explainShort:poem.p+advice,
+    stars,items,color,luckyNum,charm:{cat,emoji:charm.e,name:charm.n,desc:charm.d}};
+}
+const fmtDate=s=>{const [y,m,d]=s.split('-').map(Number);return `${y}年${m}月${d}日`;};
+const slashDate=s=>s.replace(/-/g,'/');
+
+/* =====================================================================
+   籤紙繪製（畫布，日式御神籤風格）
+   ===================================================================== */
+const PW=1400,PH=940;
+const FONT_BRUSH='"Iansui","Kaiti TC","DFKai-SB","BiauKai","Noto Serif TC",serif';
+const FONT_CUTE='"Huninn","Iansui","PingFang TC","Microsoft JhengHei",sans-serif';
+function withTimeout(p,ms){return Promise.race([p,new Promise(r=>setTimeout(r,ms))]);}
+async function ensureFonts(text){
+  if(!document.fonts||!document.fonts.load)return;
+  try{await withTimeout(Promise.all([document.fonts.load('48px "Iansui"',text),document.fonts.load('24px "Huninn"',text)]),3500);}catch(e){}
+}
+function wrapText(c,text,maxW){
+  const lines=[];let line='';const punct='，。、！？；：」』）…';
+  for(const ch of text){
+    const t=line+ch;
+    if(c.measureText(t).width>maxW&&line&&!punct.includes(ch)){lines.push(line);line=ch;}else line=t;
+  }
+  if(line)lines.push(line);return lines;
+}
+function vtext(c,str,cx,y0,step){[...str].forEach((ch,i)=>c.fillText(ch,cx,y0+i*step));}
+async function renderPaper(canvas,R){
+  canvas.width=PW;canvas.height=PH;
+  const c=canvas.getContext('2d');
+  const allText='狐火神社御神籤第番戀愛學業金運健康願望待人失物旅行幸運色數字物僅供娛樂年月日君小姐0123456789'+
+    R.title+R.explain+R.poem.join('')+Object.values(R.items).join('')+R.charm.desc+R.charm.name+R.charm.cat+R.color.n+R.level.name+kanji(R.num)+R.name;
+  await ensureFonts(allText);
+  const ink='#2b1b1b',red='#b5261c',soft='#6b5a48';
+  // 和紙底色與纖維
+  c.fillStyle='#f4ead2';c.fillRect(0,0,PW,PH);
+  const pr=mulberry32(R.num*7919+R.luckyNum*31);
+  for(let i=0;i<520;i++){
+    c.strokeStyle=`rgba(${150+pr()*50|0},${120+pr()*40|0},${80+pr()*30|0},${(0.05+pr()*0.07).toFixed(3)})`;
+    c.lineWidth=0.6+pr();const x=pr()*PW,y=pr()*PH,l=10+pr()*40,a=pr()*Math.PI;
+    c.beginPath();c.moveTo(x,y);c.lineTo(x+Math.cos(a)*l,y+Math.sin(a)*l);c.stroke();
+  }
+  // 邊緣淡紅暈染
+  const g=c.createRadialGradient(PW/2,PH/2,PH*0.32,PW/2,PH/2,PW*0.62);
+  g.addColorStop(0,'rgba(190,50,40,0)');g.addColorStop(1,'rgba(190,50,40,0.32)');
+  c.fillStyle=g;c.fillRect(0,0,PW,PH);
+  // 外框
+  c.strokeStyle=red;c.lineWidth=5;c.strokeRect(26,26,PW-52,PH-52);
+  c.lineWidth=1.5;c.strokeRect(38,38,PW-76,PH-76);
+  c.textAlign='center';c.textBaseline='middle';
+  // 右側：第N番、運勢大字、神社名
+  c.fillStyle=ink;c.font=`50px ${FONT_BRUSH}`;
+  vtext(c,'第'+kanji(R.num)+'番',1300,130,62);
+  c.fillStyle=R.level.key==='kyo'?'#3a2a4a':red;c.font=`132px ${FONT_BRUSH}`;
+  vtext(c,R.level.name,1188,170,140);
+  c.fillStyle=soft;c.font=`30px ${FONT_BRUSH}`;
+  vtext(c,'狐火神社御神籤',1188,430,40);
+  // 姓名（直排）
+  c.fillStyle=ink;c.font=`32px ${FONT_BRUSH}`;
+  vtext(c,[...R.name].slice(0,10).join(''),1300,470,40);
+  // 籤詩（直排四行，右到左）
+  c.fillStyle=ink;c.font=`52px ${FONT_BRUSH}`;
+  R.poem.forEach((line,i)=>vtext(c,line,1062-i*76,152,70));
+  // 分隔線
+  c.strokeStyle='rgba(181,38,28,.55)';c.lineWidth=2;c.setLineDash([8,8]);
+  c.beginPath();c.moveTo(790,80);c.lineTo(790,PH-80);c.stroke();c.setLineDash([]);
+  // 狐狸與落款印
+  drawFoxHead(c,900,722,1.25);
+  c.save();c.translate(1130,732);c.fillStyle=red;c.beginPath();c.roundRect?c.roundRect(0,0,92,92,8):c.rect(0,0,92,92);c.fill();
+  c.fillStyle='#fbe9e0';c.font=`40px ${FONT_BRUSH}`;c.textAlign='center';c.textBaseline='middle';
+  c.fillText('狐',46,28);c.fillText('火',46,66);
+  c.strokeStyle='#fbe9e0';c.lineWidth=2;c.strokeRect(6,6,80,80);c.restore();
+  c.textAlign='center';c.textBaseline='middle';
+  // ---- 左側 ----
+  c.textAlign='left';
+  c.fillStyle=ink;c.font=`38px ${FONT_BRUSH}`;c.fillText(R.title,70,98);
+  c.fillStyle=soft;c.font=`22px ${FONT_CUTE}`;c.fillText(fmtDate(R.date)+'　的籤',70,142);
+  c.strokeStyle='rgba(181,38,28,.5)';c.lineWidth=1.5;c.setLineDash([6,6]);
+  c.beginPath();c.moveTo(70,170);c.lineTo(760,170);c.stroke();c.setLineDash([]);
+  // 白話解釋
+  c.fillStyle=ink;c.font=`25px ${FONT_CUTE}`;
+  let lines=wrapText(c,R.explain,690);
+  if(lines.length>5)lines=wrapText(c,R.explainShort,690);
+  lines=lines.slice(0,5);
+  let y=210;lines.forEach((ln,i)=>c.fillText(ln,70,y+i*39));
+  y+=lines.length*39+14;
+  // 分項運勢（御守）
+  let ys=y+22;
+  SUBS.forEach((s,idx)=>{
+    const col=idx%2,row=Math.floor(idx/2),x=70+col*350,yy=ys+row*60;
+    c.fillStyle=red;c.font=`28px ${FONT_BRUSH}`;c.fillText(s.n,x,yy);
+    for(let k=0;k<5;k++)drawOmamori(c,x+92+k*38,yy-19,1.12,k<R.stars[s.k]);
+  });
+  y=ys+60*2+6;
+  // 事項別
+  c.strokeStyle='rgba(181,38,28,.35)';c.lineWidth=1.2;c.beginPath();c.moveTo(70,y);c.lineTo(760,y);c.stroke();
+  y+=32;
+  ITEM_LABELS.forEach((it,i)=>{
+    c.fillStyle=red;c.font=`27px ${FONT_BRUSH}`;c.fillText(it.n,70,y+i*40);
+    c.fillStyle=ink;c.font=`24px ${FONT_CUTE}`;c.fillText(R.items[it.k],160,y+i*40);
+  });
+  y=Math.max(y+4*40+4,PH-196);
+  // 幸運色／數字／物
+  c.strokeStyle='rgba(181,38,28,.35)';c.beginPath();c.moveTo(70,y-24);c.lineTo(760,y-24);c.stroke();
+  c.fillStyle=red;c.font=`26px ${FONT_BRUSH}`;c.fillText('幸運色',70,y);
+  c.beginPath();c.arc(190,y,17,0,Math.PI*2);c.fillStyle=R.color.h;c.fill();c.strokeStyle='#3a2a2a';c.lineWidth=2;c.stroke();
+  c.fillStyle=ink;c.font=`24px ${FONT_CUTE}`;c.fillText(R.color.n,218,y);
+  c.fillStyle=red;c.font=`26px ${FONT_BRUSH}`;c.fillText('幸運數字',420,y);
+  c.fillStyle=ink;c.font=`34px ${FONT_BRUSH}`;c.fillText(String(R.luckyNum),560,y);
+  c.fillStyle=red;c.font=`26px ${FONT_BRUSH}`;c.fillText('幸運物',70,y+50);
+  c.font=`38px "Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif`;c.fillText(R.charm.emoji,160,y+50);
+  c.fillStyle=ink;c.font=`24px ${FONT_CUTE}`;c.fillText(R.charm.name+'（'+R.charm.cat+'）',212,y+50);
+  c.fillStyle=soft;c.font=`22px ${FONT_CUTE}`;c.fillText(R.charm.desc,70,y+92);
+  // 底部小字
+  c.fillStyle='#8a7a6a';c.font=`19px ${FONT_CUTE}`;c.fillText('僅供娛樂',70,PH-52);
+}
+function downloadCanvas(canvas,R){
+  canvas.toBlob(b=>{
+    if(!b)return;
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);
+    a.download=`狐火神籤_${R.name.replace(/[\\/:*?"<>|]/g,'_')}_${R.date.replace(/-/g,'')}.png`;
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  },'image/png');
+}
+
+/* =====================================================================
+   聲音：日式風格合成音樂（箏、尺八、三味線、太鼓、風鈴）＋音效
+   ===================================================================== */
+const Snd=(()=>{
+  let ctx=null,master,bus,sfxBus,conv,noiseBuf,timer=null,on=false;
+  let tIdx=0,events=[],t0=0,eIdx=0,spb=1;
+  const LOOP=64;
+  const SCALES={miyako:[0,1,5,7,8],yo:[0,2,5,7,9],ryukyu:[0,4,5,7,11]};
+  const TRACKS=[
+    {name:'夜櫻參道',scale:'miyako',root:57,bpm:60,koto:.55,shaku:1,bells:3},
+    {name:'狐火行列',scale:'miyako',root:52,bpm:72,koto:.35,shaku:1,gl:1,shami:1,taiko:2,bells:3,eerie:1},
+    {name:'月下鳥居',scale:'yo',root:55,bpm:58,koto:.6,shaku:1,bells:2},
+    {name:'鈴鳴之庭',scale:'yo',root:60,bpm:66,koto:.7,bells:6},
+    {name:'雨夜燈籠',scale:'ryukyu',root:57,bpm:64,koto:.5,shami:1,bells:3},
+    {name:'神樂囃子',scale:'yo',root:50,bpm:84,koto:.5,shaku:1,shami:1,taiko:1,bells:2},
+    {name:'古井迷霧',scale:'miyako',root:45,bpm:48,koto:.3,shaku:1,gl:1,taiko:2,bells:4,eerie:1},
+    {name:'千本鳥居',scale:'miyako',root:59,bpm:76,koto:.65,shami:1,taiko:1,bells:2},
+    {name:'風鈴夏夜',scale:'ryukyu',root:62,bpm:60,koto:.55,shaku:1,bells:7},
+    {name:'曉之社',scale:'yo',root:53,bpm:54,koto:.5,shaku:1,bells:3}
+  ];
+  const mf=m=>440*Math.pow(2,(m-69)/12);
+  function makeIR(){
+    const rate=ctx.sampleRate,len=Math.floor(rate*2.6),buf=ctx.createBuffer(2,len,rate);
+    for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,3);}
+    return buf;
+  }
+  function init(){
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
+    bus=ctx.createGain();bus.gain.value=.9;
+    const dry=ctx.createGain();dry.gain.value=.75;bus.connect(dry);dry.connect(master);
+    conv=ctx.createConvolver();conv.buffer=makeIR();
+    const wet=ctx.createGain();wet.gain.value=.5;bus.connect(conv);conv.connect(wet);wet.connect(master);
+    sfxBus=ctx.createGain();sfxBus.gain.value=.9;sfxBus.connect(master);
+    const send=ctx.createGain();send.gain.value=.2;sfxBus.connect(send);send.connect(conv);
+    noiseBuf=ctx.createBuffer(1,ctx.sampleRate,ctx.sampleRate);
+    const nd=noiseBuf.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+  }
+  /* ---- 樂器 ---- */
+  function koto(t,f,v){
+    const o=ctx.createOscillator(),o2=ctx.createOscillator(),g=ctx.createGain(),lp=ctx.createBiquadFilter(),g2=ctx.createGain();
+    o.type='triangle';o2.type='sine';
+    o.frequency.setValueAtTime(f*1.014,t);o.frequency.exponentialRampToValueAtTime(f,t+.06);o2.frequency.value=f*2;g2.gain.value=.25;
+    lp.type='lowpass';lp.frequency.setValueAtTime(4200,t);lp.frequency.exponentialRampToValueAtTime(900,t+1.3);
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.24*v,t+.004);g.gain.exponentialRampToValueAtTime(.0008,t+2);
+    o.connect(lp);o2.connect(g2);g2.connect(lp);lp.connect(g);g.connect(bus);
+    o.start(t);o2.start(t);o.stop(t+2.1);o2.stop(t+2.1);
+  }
+  function shaku(t,f,dur,v,gl){
+    const o=ctx.createOscillator(),g=ctx.createGain(),lp=ctx.createBiquadFilter();
+    o.type='triangle';
+    if(gl){o.frequency.setValueAtTime(f*1.06,t);o.frequency.exponentialRampToValueAtTime(f,t+.7);}else o.frequency.value=f;
+    const lfo=ctx.createOscillator(),lg=ctx.createGain();lfo.frequency.value=5;lg.gain.value=f*.012;lfo.connect(lg);lg.connect(o.frequency);
+    lp.type='lowpass';lp.frequency.value=2000;
+    const n=ctx.createBufferSource();n.buffer=noiseBuf;n.loop=true;
+    const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=f*2;bp.Q.value=2.5;
+    const ng=ctx.createGain();ng.gain.setValueAtTime(.0001,t);ng.gain.linearRampToValueAtTime(.05*v,t+.4);ng.gain.linearRampToValueAtTime(.0001,t+dur);
+    n.connect(bp);bp.connect(ng);ng.connect(bus);
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.16*v,t+.45);g.gain.setValueAtTime(.16*v,t+dur*.65);g.gain.linearRampToValueAtTime(.0001,t+dur);
+    o.connect(lp);lp.connect(g);g.connect(bus);
+    o.start(t);lfo.start(t);n.start(t);o.stop(t+dur+.1);lfo.stop(t+dur+.1);n.stop(t+dur+.1);
+  }
+  function shami(t,f,v){
+    const o=ctx.createOscillator(),g=ctx.createGain(),bp=ctx.createBiquadFilter();
+    o.type='sawtooth';o.frequency.setValueAtTime(f*1.03,t);o.frequency.exponentialRampToValueAtTime(f,t+.03);
+    bp.type='bandpass';bp.frequency.value=1300;bp.Q.value=2.4;
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.20*v,t+.003);g.gain.exponentialRampToValueAtTime(.0008,t+.34);
+    o.connect(bp);bp.connect(g);g.connect(bus);o.start(t);o.stop(t+.4);
+    const n=ctx.createBufferSource();n.buffer=noiseBuf;const ng=ctx.createGain();
+    ng.gain.setValueAtTime(.12*v,t);ng.gain.exponentialRampToValueAtTime(.0005,t+.04);
+    const hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.value=2500;n.connect(hp);hp.connect(ng);ng.connect(bus);n.start(t);n.stop(t+.06);
+  }
+  function taiko(t,v){
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.type='sine';o.frequency.setValueAtTime(115,t);o.frequency.exponentialRampToValueAtTime(42,t+.35);
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.55*v,t+.005);g.gain.exponentialRampToValueAtTime(.001,t+.7);
+    o.connect(g);g.connect(bus);o.start(t);o.stop(t+.8);
+    const n=ctx.createBufferSource();n.buffer=noiseBuf;const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=700;
+    const ng=ctx.createGain();ng.gain.setValueAtTime(.25*v,t);ng.gain.exponentialRampToValueAtTime(.001,t+.12);
+    n.connect(lp);lp.connect(ng);ng.connect(bus);n.start(t);n.stop(t+.15);
+  }
+  function bell(t,f,v){
+    [[1,1],[2.76,.45],[5.4,.22]].forEach(([k,a])=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=f*k;
+      g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.07*v*a,t+.004);g.gain.exponentialRampToValueAtTime(.0004,t+2.6/k+.6);
+      o.connect(g);g.connect(bus);o.start(t);o.stop(t+3.4);
+    });
+  }
+  function play(e,t){
+    const f=mf(e.m||60);
+    switch(e.type){
+      case'koto':koto(t,f,e.v);break;
+      case'shaku':shaku(t,f,e.d*spb,e.v,e.gl);break;
+      case'shami':shami(t,f,e.v);break;
+      case'taiko':taiko(t,e.v);break;
+      case'bell':bell(t,f,e.v);break;
+    }
+  }
+  /* ---- 作曲（每首固定種子，所以每次聽到一樣） ---- */
+  function genTrack(i,cfg){
+    const r=mulberry32(1000+i*7717),sc=SCALES[cfg.scale];
+    const note=d=>cfg.root+12*Math.floor(d/5)+sc[((d%5)+5)%5];
+    const ev=[];
+    const mk=()=>{let d=5+Math.floor(r()*3);const m=[];
+      for(let s=0;s<16;s++){
+        if(r()<cfg.koto){d=Math.max(2,Math.min(10,d+[-2,-1,-1,0,1,1,2][Math.floor(r()*7)]));m.push(d);}else m.push(null);
+      }return m;};
+    const A=mk(),B=mk();
+    const mut=m=>m.map(x=>r()<.2?(x===null?(r()<.5?5+Math.floor(r()*4):null):x+(r()<.5?-1:1)):x);
+    const blocks=[A,mut(A),B,A,mut(A),mut(B),A,mut(A)];
+    blocks.forEach((m,bi)=>m.forEach((d,si)=>{if(d!==null)ev.push({t:bi*8+si*.5,type:'koto',m:note(d),v:.5+r()*.3});}));
+    for(let b=0;b<LOOP;b+=8){ev.push({t:b,type:'koto',m:note(-5),v:.75});ev.push({t:b+4,type:'koto',m:note(-2),v:.55});}
+    if(cfg.shaku){
+      for(let b=0;b<LOOP;b+=16){
+        const d1=[0,2,3,4,5][Math.floor(r()*5)],d2=[0,2,3,5][Math.floor(r()*4)];
+        ev.push({t:b+(b%32?1:0),type:'shaku',m:note(d1),d:6,v:.9,gl:cfg.gl});
+        ev.push({t:b+8,type:'shaku',m:note(d2),d:3.5,v:.8,gl:cfg.gl});
+      }
+    }
+    if(cfg.shami){
+      const pat=[1,0,1,1,0,1,0,0];
+      for(let bar=0;bar<16;bar++)pat.forEach((h,s)=>{
+        if(h&&r()<.78)ev.push({t:bar*4+s*.5,type:'shami',m:note([0,3,2,0][Math.floor(r()*4)])+12,v:.45+r()*.2});
+      });
+    }
+    if(cfg.taiko){
+      for(let bar=0;bar<16;bar++){
+        ev.push({t:bar*4,type:'taiko',v:1});
+        if(cfg.taiko===2)ev.push({t:bar*4+.45,type:'taiko',v:.55});
+        else if(r()<.5)ev.push({t:bar*4+2.5,type:'taiko',v:.5});
+      }
+    }
+    for(let seg=0;seg<LOOP;seg+=16)for(let k=0;k<cfg.bells;k++){
+      const t=seg+r()*15.5,m=note(10+Math.floor(r()*5));
+      ev.push({t,type:'bell',m,v:.5+r()*.4});
+      if(cfg.eerie&&r()<.4)ev.push({t:t+.02,type:'bell',m:m+1,v:.35});
+    }
+    ev.sort((a,b)=>a.t-b.t);return ev;
+  }
+  function begin(i,start){
+    const cfg=TRACKS[i];events=genTrack(i,cfg);spb=60/cfg.bpm;t0=start;eIdx=0;
+    const wait=Math.max(0,(start-ctx.currentTime)*1000);
+    setTimeout(()=>{if(Snd.onTrack&&on)Snd.onTrack(cfg.name);},wait);
+  }
+  function tick(){
+    if(!ctx||!on)return;
+    const horizon=ctx.currentTime+.4;
+    while(eIdx<events.length){
+      const e=events[eIdx],at=t0+e.t*spb;
+      if(at>horizon)break;
+      if(at>=ctx.currentTime-.05)play(e,at);
+      eIdx++;
+    }
+    if(eIdx>=events.length){
+      const end=t0+LOOP*spb;
+      if(end<horizon+.05){tIdx=(tIdx+1)%TRACKS.length;begin(tIdx,end);}
+    }
+  }
+  async function start(){
+    if(on)return;
+    if(!ctx)init();
+    try{await ctx.resume();}catch(e){}
+    on=true;
+    master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.6,ctx.currentTime,.05);
+    begin(tIdx,ctx.currentTime+.2);
+    timer=setInterval(tick,100);
+  }
+  function stop(){
+    if(!on)return;
+    on=false;clearInterval(timer);timer=null;
+    const c=ctx;ctx=null;
+    try{c.currentTime;master.gain.cancelScheduledValues(c.currentTime);master.gain.setTargetAtTime(0,c.currentTime,.04);}catch(e){}
+    setTimeout(()=>{try{c.close();}catch(e){}},300);
+  }
+  /* ---- 抽籤音效 ---- */
+  function clack(t,v){
+    const o=ctx.createOscillator(),g=ctx.createGain(),f=650+Math.random()*600;
+    o.type='triangle';o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(f*.55,t+.06);
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.4*v,t+.002);g.gain.exponentialRampToValueAtTime(.0005,t+.09);
+    o.connect(g);g.connect(sfxBus);o.start(t);o.stop(t+.12);
+    const n=ctx.createBufferSource();n.buffer=noiseBuf;const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=3000;bp.Q.value=.8;
+    const ng=ctx.createGain();ng.gain.setValueAtTime(.3*v,t);ng.gain.exponentialRampToValueAtTime(.0005,t+.05);
+    n.connect(bp);bp.connect(ng);ng.connect(sfxBus);n.start(t,Math.random()*.5);n.stop(t+.08);
+  }
+  function swish(t,dur,f0,f1,v){
+    const n=ctx.createBufferSource();n.buffer=noiseBuf;n.loop=true;
+    const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.Q.value=1.2;bp.frequency.setValueAtTime(f0,t);bp.frequency.exponentialRampToValueAtTime(f1,t+dur);
+    const g=ctx.createGain();g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.28*v,t+dur*.35);g.gain.linearRampToValueAtTime(.0001,t+dur);
+    n.connect(bp);bp.connect(g);g.connect(sfxBus);n.start(t);n.stop(t+dur+.05);
+  }
+  return {
+    get on(){return on;},
+    start,stop,onTrack:null,
+    shake(){if(!on||!ctx)return;const t=ctx.currentTime+.05;let x=0;let i=0;while(x<1.95){clack(t+x,.7+Math.random()*.3);swish(t+x,.1,2000,4500,.6);x+=.13+Math.random()*.06;if(++i>40)break;}},
+    drop(delay){if(!on||!ctx)return;const t=ctx.currentTime+delay;clack(t,.9);clack(t+.14,.6);clack(t+.24,.35);},
+    unroll(delay){if(!on||!ctx)return;swish(ctx.currentTime+delay,1.0,1400,5200,1);},
+    reveal(delay){if(!on||!ctx)return;bell(ctx.currentTime+delay,mf(88),1.2);bell(ctx.currentTime+delay+.18,mf(93),.9);},
+    _tracks:TRACKS,_gen:genTrack
+  };
+})();
+
+/* =====================================================================
+   歷史紀錄（localStorage）
+   ===================================================================== */
+const LS_KEY='kitsune-omikuji-history-v1';
+let memHist=[];
+function loadHistory(){
+  try{const a=JSON.parse(localStorage.getItem(LS_KEY)||'[]');return Array.isArray(a)?a:memHist;}catch(e){return memHist;}
+}
+function saveHistory(a){memHist=a;try{localStorage.setItem(LS_KEY,JSON.stringify(a));}catch(e){}}
+function recordDraw(R){
+  const h=loadHistory();
+  const ex=h.find(x=>x.key===R.key);
+  if(ex)return {result:ex.result,isNew:false};
+  h.unshift({key:R.key,ts:Date.now(),result:R});
+  saveHistory(h.slice(0,7));
+  return {result:R,isNew:true};
+}
+
+/* =====================================================================
+   介面流程
+   ===================================================================== */
+const el={name:$('inName'),y:$('inY'),m:$('inM'),d:$('inD'),gender:$('inGender')};
+let busy=false,curScreen='home',curResult=null,histResult=null;
+
+function setTL(mode){
+  const b=$('btnTL');
+  if(!mode){b.style.display='none';b.dataset.mode='';return;}
+  b.style.display='flex';b.dataset.mode=mode;
+  b.innerHTML=mode==='history'?ICON_SCROLL+'<span>歷史紀錄</span>':ICON_TORII+'<span>首頁</span>';
+}
+function show(name){
+  curScreen=name;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===name));
+  setTL(name==='home'?'history':(name==='drawing'?null:'home'));
+}
+$('btnTL').addEventListener('click',()=>{
+  if($('btnTL').dataset.mode==='history')openHistory();else goHome();
+});
+function goHome(){show('home');$('homeBubble').textContent='請報上名來……';}
+
+/* 聲音開關 */
+function renderSoundBtn(){
+  const b=$('btnSound');
+  b.innerHTML=Snd.on?'<span>🔊</span><span>音樂：開</span>':'<span>🔇</span><span>音樂：關</span>';
+}
+$('btnSound').addEventListener('click',async()=>{
+  const b=$('btnSound');b.classList.remove('hint');
+  if(Snd.on)Snd.stop();else{try{await Snd.start();}catch(e){}}
+  renderSoundBtn();
+});
+let toastTimer=null;
+Snd.onTrack=name=>{
+  const t=$('trackToast');t.textContent='♪ '+name;t.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3500);
+};
+
+/* 彈出視窗 */
+function openModal({title,html,buttons}){
+  $('mTitle').textContent=title;$('mBody').innerHTML=html;
+  const box=$('mBtns');box.innerHTML='';
+  buttons.forEach((b,i)=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='btn'+(b.ghost?' ghostbtn':'');btn.textContent=b.text;
+    btn.addEventListener('click',b.onClick);box.appendChild(btn);if(i===buttons.length-1)setTimeout(()=>btn.focus(),30);
+  });
+  $('modal').classList.add('show');
+}
+function closeModal(){$('modal').classList.remove('show');}
+
+/* 輸入與驗證 */
+['inY','inM','inD'].forEach(id=>$(id).addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'');}));
+function readForm(){
+  const genderEl=document.querySelector('input[name=gender]:checked');
+  return {name:el.name.value.trim().replace(/\s+/g,' '),ys:el.y.value,ms:el.m.value,ds:el.d.value,gender:genderEl?genderEl.value:''};
+}
+function validate(v){
+  const errs=[];
+  if(!v.name)errs.push({els:[el.name],msg:'還沒有填寫姓名喔'});
+  const missing=[];
+  if(!v.ys)missing.push(['年',el.y]);if(!v.ms)missing.push(['月',el.m]);if(!v.ds)missing.push(['日',el.d]);
+  if(missing.length){
+    errs.push({els:missing.map(x=>x[1]),msg:'生日還沒填完整（缺少：'+missing.map(x=>x[0]).join('、')+'）'});
+  }else{
+    const y=+v.ys,m=+v.ms,d=+v.ds,now=new Date(),thisY=now.getFullYear();
+    if(y>thisY&&v.ys.length===4)errs.push({els:[el.y,el.m,el.d],msg:'生日不能是未來的日期喔'});
+    else if(v.ys.length<4||y<1900)errs.push({els:[el.y],msg:`年份請填 1900 年以後的 4 位數西元年`});
+    else if(m<1||m>12)errs.push({els:[el.m],msg:'月份請填 1 到 12'});
+    else if(d<1||d>31)errs.push({els:[el.d],msg:'日期請填 1 到 31'});
+    else{
+      const dt=new Date(y,m-1,d);
+      if(dt.getFullYear()!==y||dt.getMonth()!==m-1||dt.getDate()!==d)errs.push({els:[el.y,el.m,el.d],msg:'這個日期不存在，請再確認一下'});
+      else if(dt>new Date(thisY,now.getMonth(),now.getDate()))errs.push({els:[el.y,el.m,el.d],msg:'生日不能是未來的日期喔'});
+    }
+  }
+  if(!v.gender)errs.push({els:[el.gender],msg:'請選擇性別'});
+  return errs;
+}
+function flash(errs){
+  const list=[];errs.forEach(e=>e.els.forEach(x=>{if(!list.includes(x))list.push(x);}));
+  list.forEach(x=>{
+    x.classList.remove('flash');void x.offsetWidth;x.classList.add('flash');
+    x.addEventListener('animationend',()=>x.classList.remove('flash'),{once:true});
+  });
+  const first=list[0];if(first&&first.focus&&first!==el.gender)first.focus();
+}
+$('btnStart').addEventListener('click',()=>{
+  if(busy)return;
+  const v=readForm(),errs=validate(v);
+  if(errs.length){
+    $('homeBubble').textContent='咦？有地方沒填好喔……';
+    openModal({title:'等一下……',html:errs.map(e=>'・'+esc(e.msg)).join('<br>'),
+      buttons:[{text:'知道了',onClick:()=>{closeModal();flash(errs);}}]});
+    return;
+  }
+  const inp={name:v.name,y:+v.ys,m:+v.ms,d:+v.ds,gender:v.gender};
+  openModal({title:'請確認資料',
+    html:`<div class="row"><b>姓名</b><span>${esc(inp.name)}</span></div>
+          <div class="row"><b>生日</b><span>${inp.y}年${inp.m}月${inp.d}日</span></div>
+          <div class="row"><b>性別</b><span>${esc(inp.gender)}</span></div>
+          <div style="text-align:center;font-size:16px;color:#7a5a4a;margin-top:6px">資料無誤，就要請神明抽籤囉</div>`,
+    buttons:[{text:'返回修改',ghost:true,onClick:closeModal},{text:'確認抽籤',onClick:()=>{closeModal();startDraw(inp);}}]});
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&curScreen==='home'&&!$('modal').classList.contains('show')&&e.target.tagName==='INPUT'&&e.target.type==='text')$('btnStart').click();
+});
+const bubbleMap=[[el.name,'請報上名來……'],[el.y,'你是在哪一年降臨人間的呢？'],[el.m,'嗯嗯……是哪個月呢？'],[el.d,'最後是哪一天呢……']];
+bubbleMap.forEach(([x,t])=>x.addEventListener('focus',()=>{$('homeBubble').textContent=t;}));
+document.querySelectorAll('input[name=gender]').forEach(x=>x.addEventListener('change',()=>{$('homeBubble').textContent='神明想知道你是哪位……';}));
+$('btnStart').addEventListener('mouseenter',()=>{$('homeBubble').textContent='準備好了嗎……神明正在看著你喔。';});
+
+/* 抽籤動畫 */
+async function startDraw(inp){
+  busy=true;
+  const date=todayStr();
+  const fresh=generateFortune(inp,date);
+  const {result:R,isNew}=recordDraw(fresh);
+  curResult=R;
+  show('drawing');
+  const stage=$('stage');stage.className='stage';
+  const stick=$('stick');stick.textContent='第'+kanji(R.num)+'番';
+  $('paperImg').removeAttribute('src');
+  const paperReady=renderPaper($('resultCanvas'),R).then(()=>{$('paperImg').src=$('resultCanvas').toDataURL('image/png');}).catch(()=>{});
+  const say=t=>{$('drawBubble').textContent=t;};
+  say(isNew?'神明感應中……請在心裡默念願望喔。':'今天已經抽過這支籤了……神明的答覆不會變喔。');
+  // 階段一：搖籤筒
+  void stage.offsetWidth;stage.classList.add('stage1');Snd.shake();
+  await sleep(2000);
+  // 階段二：籤棒掉出
+  stage.classList.remove('stage1');stage.classList.add('stage2');say('有東西掉出來了……！');Snd.drop(.95);
+  await sleep(1500);
+  // 階段三：籤紙展開
+  await paperReady;
+  stage.classList.add('stage3');say('神明回應了。');Snd.unroll(.05);Snd.reveal(1.1);
+  await sleep(1550);
+  showResult(R);
+  busy=false;
+}
+function showResult(R){
+  curResult=R;
+  $('resultBubble').textContent=FOX_SAY[R.level.key];
+  show('result');
+}
+$('btnDownload').addEventListener('click',()=>{if(curResult)downloadCanvas($('resultCanvas'),curResult);});
+
+/* 歷史紀錄畫面 */
+function openHistory(){
+  const h=loadHistory().slice(0,7);
+  const list=$('hList');
+  $('hDetail').style.display='none';list.style.display='flex';$('history').querySelector('h2').style.display='';
+  if(!h.length){
+    list.innerHTML='<div class="empty"><svg class="fox" viewBox="0 0 140 145"><use href="#fox"/></svg>還沒有抽過籤喔……<br>先去請神明抽一支吧。</div>';
+  }else{
+    list.innerHTML='<div class="hhead"><span>日期</span><span>姓名</span><span>生日</span><span>性別</span><span style="text-align:right">運勢</span></div>'+
+      h.map((x,i)=>{const R=x.result;
+        return `<button type="button" class="hitem" data-i="${i}"><span>${slashDate(R.date)}</span><span class="hname">${esc(R.name)}</span><span>${R.y}/${pad2(R.m)}/${pad2(R.d)}</span><span>${esc(R.gender)}</span><span class="hlevel" style="background:${R.level.color}">${esc(R.level.name)}</span></button>`;}).join('')+
+      '<div class="tipline" style="text-align:center;margin-top:4px">只顯示最近 7 筆・點一下可以看完整籤紙</div>';
+    list.querySelectorAll('.hitem').forEach(b=>b.addEventListener('click',()=>openDetail(h[+b.dataset.i].result)));
+  }
+  show('history');
+}
+async function openDetail(R){
+  histResult=R;
+  $('hList').style.display='none';$('history').querySelector('h2').style.display='none';
+  $('hDetail').style.display='flex';
+  await renderPaper($('histCanvas'),R);
+}
+$('btnBackList').addEventListener('click',openHistory);
+$('btnHistDownload').addEventListener('click',()=>{if(histResult)downloadCanvas($('histCanvas'),histResult);});
+
+/* =====================================================================
+   背景：星星、狐火、偶爾閃過的面具與黑影
+   ===================================================================== */
+function initBackground(){
+  const bg=$('bg');
+  for(let i=0;i<90;i++){
+    const s=document.createElement('div');s.className='star';
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*72}%;animation-delay:${(Math.random()*3).toFixed(2)}s;animation-duration:${(2+Math.random()*3).toFixed(2)}s;transform:scale(${(.6+Math.random()*1.2).toFixed(2)})`;
+    bg.appendChild(s);
+  }
+  for(let i=0;i<14;i++){
+    const w=document.createElement('div');w.className='wisp';
+    w.style.cssText=`left:${(4+Math.random()*92).toFixed(1)}%;animation-duration:${(10+Math.random()*9).toFixed(1)}s;animation-delay:${(-Math.random()*16).toFixed(1)}s`;
+    bg.appendChild(w);
+  }
+  const ghost=()=>{
+    if(!document.hidden){
+      const g=document.createElement('div');g.className='ghost';
+      const sz=56+Math.random()*70;
+      g.style.cssText=`left:${(4+Math.random()*86).toFixed(1)}%;top:${(10+Math.random()*60).toFixed(1)}%;width:${sz.toFixed(0)}px;height:${(sz*.77).toFixed(0)}px`;
+      g.innerHTML='<svg viewBox="0 0 120 92" width="100%" height="100%"><use href="#foxhead"/></svg>';
+      bg.appendChild(g);setTimeout(()=>g.remove(),2700);
+    }
+    setTimeout(ghost,7000+Math.random()*9000);
+  };
+  setTimeout(ghost,5000);
+  const walker=()=>{
+    if(!document.hidden){const w=document.createElement('div');w.className='walker';bg.appendChild(w);setTimeout(()=>w.remove(),16500);}
+    setTimeout(walker,38000+Math.random()*30000);
+  };
+  setTimeout(walker,20000);
+}
+
+/* 初始化 */
+buildDefs();
+initBackground();
+renderSoundBtn();
+setTL('history');
+</script>
+</body>
+</html>
